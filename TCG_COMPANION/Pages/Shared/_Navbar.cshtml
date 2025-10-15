@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">TCG Companion</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="/Deck">Deck</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Collection">Collection</a></li>
+                <li class="nav-item"><a class="nav-link" href="/About">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Rules">How to Play</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Login">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Join">Join</a></li>
+                @if (User?.Identity?.IsAuthenticated ?? false)
+                {
+                    <li class="nav-item">
+                        <form method="post" class="d-inline"
+                              asp-area="Identity" asp-page="/Account/Logout"
+                              asp-route-returnUrl="@Context.Request.Path">
+                            <button type="submit" class="btn btn-outline-danger btn-sm nav-link border-0">
+                                Logout (@User.Identity!.Name)
+                            </button>
+                        </form>
+                    </li>
+                }
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin" target="_blank">Admin</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

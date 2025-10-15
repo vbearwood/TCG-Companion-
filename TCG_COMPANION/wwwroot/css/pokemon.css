@@ -1,0 +1,55 @@
+h1 {
+    text-align: center;
+}
+
+.logo {
+    margin-top: 40px;
+    height: 130px;
+}
+
+.unownv{
+    margin-top: 40px;
+    height: 109px;
+    transform: rotate(-20deg)
+}
+
+.unownj{
+    margin-top: 40px;
+    height: 100px;
+    transform:rotate(20deg)
+}
+
+.buttons {
+    text-align: center;
+}
+
+.center-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 50vh;
+}
+
+.search{
+    bottom: 0;
+}
+
+.image-matrix {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    padding: 20px;
+}
+
+.image-matrix img {
+    width: 100%;
+    height: auto;
+}
+
+p {
+    text-align: center; 
+    width: 50%;
+    margin: 0 auto;
+    font-size: 30px;
+}
