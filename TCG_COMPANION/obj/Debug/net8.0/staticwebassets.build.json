@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "A6nc8zPfhRTC2k8RuH8DDYFw92pe7TDxnqMpnrRVU4A=",
+  "Hash": "Dy/msgyv5kTNkQPaKIvn3BQp51L4/w+cvOgNzRNz4Ys=",
   "Source": "TCG_COMPANION",
   "BasePath": "_content/TCG_COMPANION",
   "Mode": "Default",
@@ -91,25 +91,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/img/unown-j-918977700.png"
-    },
-    {
-      "Identity": "/home/vbearwood/capstone/TCG_COMPANION/wwwroot/js/deck.js",
-      "SourceId": "TCG_COMPANION",
-      "SourceType": "Discovered",
-      "ContentRoot": "/home/vbearwood/capstone/TCG_COMPANION/wwwroot/",
-      "BasePath": "_content/TCG_COMPANION",
-      "RelativePath": "js/deck.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/js/deck.js"
     },
     {
       "Identity": "/home/vbearwood/capstone/TCG_COMPANION/wwwroot/js/gallery.js",

@@ -7,11 +7,11 @@ using TCG_COMPANION.Data;
 
 #nullable disable
 
-namespace TCG_COMPANION.Migrations.Deck
+namespace TCG_COMPANION.Migrations.Collections
 {
-    [DbContext(typeof(DeckContext))]
-    [Migration("20251014215120_Initial_Deck")]
-    partial class Initial_Deck
+    [DbContext(typeof(CollectionsContext))]
+    [Migration("20251119050341_InitialCollections")]
+    partial class InitialCollections
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace TCG_COMPANION.Migrations.Deck
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("DeckId")
+                    b.Property<int?>("CollectionsId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Hp")
@@ -39,11 +39,15 @@ namespace TCG_COMPANION.Migrations.Deck
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Number")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Number")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("RetreatCost")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Set")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -51,12 +55,12 @@ namespace TCG_COMPANION.Migrations.Deck
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DeckId");
+                    b.HasIndex("CollectionsId");
 
                     b.ToTable("CardData");
                 });
 
-            modelBuilder.Entity("TCG_COMPANION.Models.Deck", b =>
+            modelBuilder.Entity("TCG_COMPANION.Models.Collections", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -69,7 +73,7 @@ namespace TCG_COMPANION.Migrations.Deck
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Decks");
+                    b.ToTable("Collections");
                 });
 
             modelBuilder.Entity("TCG_COMPANION.Models.User", b =>
@@ -78,12 +82,20 @@ namespace TCG_COMPANION.Migrations.Deck
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Bio")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DisplayName")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ProfileImage")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Username")
@@ -97,12 +109,12 @@ namespace TCG_COMPANION.Migrations.Deck
 
             modelBuilder.Entity("TCG_COMPANION.Models.CardData", b =>
                 {
-                    b.HasOne("TCG_COMPANION.Models.Deck", null)
+                    b.HasOne("TCG_COMPANION.Models.Collections", null)
                         .WithMany("Cards")
-                        .HasForeignKey("DeckId");
+                        .HasForeignKey("CollectionsId");
                 });
 
-            modelBuilder.Entity("TCG_COMPANION.Models.Deck", b =>
+            modelBuilder.Entity("TCG_COMPANION.Models.Collections", b =>
                 {
                     b.HasOne("TCG_COMPANION.Models.User", "User")
                         .WithMany()
@@ -113,7 +125,7 @@ namespace TCG_COMPANION.Migrations.Deck
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TCG_COMPANION.Models.Deck", b =>
+            modelBuilder.Entity("TCG_COMPANION.Models.Collections", b =>
                 {
                     b.Navigation("Cards");
                 });

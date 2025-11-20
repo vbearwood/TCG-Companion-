@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /home/vbearwood/capstone/TCG_COMPANION
 build_property._RazorSourceGeneratorDebug = 
 
+[/home/vbearwood/capstone/TCG_COMPANION/Pages/Collection.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ29sbGVjdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/vbearwood/capstone/TCG_COMPANION/Pages/Deck.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGVjay5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -56,4 +60,12 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/home/vbearwood/capstone/TCG_COMPANION/Pages/Shared/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19WaWV3U3RhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/vbearwood/capstone/TCG_COMPANION/Pages/UserProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlclByb2ZpbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/vbearwood/capstone/TCG_COMPANION/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

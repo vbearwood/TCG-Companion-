@@ -7,11 +7,11 @@ using TCG_COMPANION.Data;
 
 #nullable disable
 
-namespace TCG_COMPANION.Migrations.User
+namespace TCG_COMPANION.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20251014215106_Initial_User")]
-    partial class Initial_User
+    [Migration("20251119050318_InitialUser")]
+    partial class InitialUser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,12 +25,20 @@ namespace TCG_COMPANION.Migrations.User
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Bio")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DisplayName")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ProfileImage")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Username")

@@ -6,7 +6,7 @@ using TCG_COMPANION.Data;
 
 #nullable disable
 
-namespace TCG_COMPANION.Migrations.User
+namespace TCG_COMPANION.Migrations
 {
     [DbContext(typeof(UserContext))]
     partial class UserContextModelSnapshot : ModelSnapshot
@@ -22,12 +22,20 @@ namespace TCG_COMPANION.Migrations.User
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Bio")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DisplayName")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ProfileImage")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Username")

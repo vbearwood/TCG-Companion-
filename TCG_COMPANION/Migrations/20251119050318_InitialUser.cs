@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace TCG_COMPANION.Migrations.User
+namespace TCG_COMPANION.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial_User : Migration
+    public partial class InitialUser : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,8 +17,11 @@ namespace TCG_COMPANION.Migrations.User
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Username = table.Column<string>(type: "TEXT", nullable: false),
-                    Email = table.Column<string>(type: "TEXT", nullable: false),
-                    PasswordHash = table.Column<string>(type: "TEXT", nullable: false)
+                    Email = table.Column<string>(type: "TEXT", nullable: true),
+                    PasswordHash = table.Column<string>(type: "TEXT", nullable: false),
+                    DisplayName = table.Column<string>(type: "TEXT", nullable: true),
+                    Bio = table.Column<string>(type: "TEXT", nullable: true),
+                    ProfileImage = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {

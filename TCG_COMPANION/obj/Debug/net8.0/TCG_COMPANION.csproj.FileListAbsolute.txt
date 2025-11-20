@@ -1,4 +1,6 @@
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/appsettings.json
+/home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/keys/gen-lang-client-0278751790-61c9be4166d5.json
+/home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/sets.json
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/settings.json
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/TCG_COMPANION.staticwebassets.runtime.json
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/TCG_COMPANION
@@ -10,6 +12,10 @@
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/Azure.Identity.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/BCrypt.Net-Next.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/DotnetGeminiSDK.dll
+/home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/Google.Apis.dll
+/home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/Google.Apis.Auth.dll
+/home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/Google.Apis.Core.dll
+/home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/Google.GenAI.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/Humanizer.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/Junaid.GoogleGemini.Net.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/Microsoft.AspNetCore.Razor.Language.dll
@@ -67,7 +73,6 @@
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
-/home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/Microsoft.Win32.SystemEvents.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/Mono.TextTemplating.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/Newtonsoft.Json.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/NuGet.Common.dll
@@ -94,18 +99,16 @@
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/System.Composition.TypedParts.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/System.Configuration.ConfigurationManager.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/System.Diagnostics.DiagnosticSource.dll
-/home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/System.Drawing.Common.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/System.Formats.Asn1.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/System.IO.Pipelines.dll
+/home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/System.Management.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/System.Memory.Data.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/System.Reflection.MetadataLoadContext.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/System.Runtime.Caching.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/System.Security.Cryptography.ProtectedData.dll
-/home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/System.Security.Permissions.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/System.Text.Encodings.Web.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/System.Text.Json.dll
-/home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/System.Windows.Extensions.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/af/Humanizer.resources.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/ar/Humanizer.resources.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/az/Humanizer.resources.dll
@@ -264,7 +267,6 @@
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll
-/home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/runtimes/win/lib/net7.0/Microsoft.Win32.SystemEvents.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/runtimes/browser-wasm/nativeassets/net8.0/e_sqlite3.a
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/runtimes/linux-arm/native/libe_sqlite3.so
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/runtimes/linux-arm64/native/libe_sqlite3.so
@@ -286,11 +288,9 @@
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/runtimes/win-arm64/native/e_sqlite3.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/runtimes/win-x64/native/e_sqlite3.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/runtimes/win-x86/native/e_sqlite3.dll
-/home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Drawing.Common.dll
+/home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Management.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Runtime.Caching.dll
-/home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Security.Cryptography.ProtectedData.dll
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/runtimes/browser/lib/net8.0/System.Text.Encodings.Web.dll
-/home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Windows.Extensions.dll
 /home/vbearwood/capstone/TCG_COMPANION/obj/Debug/net8.0/TCG_COMPANION.csproj.AssemblyReference.cache
 /home/vbearwood/capstone/TCG_COMPANION/obj/Debug/net8.0/TCG_COMPANION.GeneratedMSBuildEditorConfig.editorconfig
 /home/vbearwood/capstone/TCG_COMPANION/obj/Debug/net8.0/TCG_COMPANION.AssemblyInfoInputs.cache
@@ -314,3 +314,4 @@
 /home/vbearwood/capstone/TCG_COMPANION/obj/Debug/net8.0/TCG_COMPANION.pdb
 /home/vbearwood/capstone/TCG_COMPANION/obj/Debug/net8.0/TCG_COMPANION.genruntimeconfig.cache
 /home/vbearwood/capstone/TCG_COMPANION/obj/Debug/net8.0/ref/TCG_COMPANION.dll
+/home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/PokemonTcgSdk.Standard.dll

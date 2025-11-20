@@ -1,5 +1,5 @@
-@page
-@model DeckModel
+@page 
+@model TCG_COMPANION.Pages.DeckModel
 @{
     ViewData["Title"] = "Your Deck - TCG Companion";
 }
@@ -12,14 +12,11 @@
     
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
           crossorigin="anonymous">
-
     <link rel="stylesheet" href="~/css/pokemon.css" asp-append-version="true" />
 </head>
 
 <body class="text-center" style="background-color:#2c2c2c; color:#f5f5f5;">
-
     <h1>Welcome To Your Deck</h1>
 
     <div class="d-inline-flex align-items-center justify-content-center mb-4 gap-3">
@@ -27,11 +24,22 @@
         <img src="~/img/pokemon-logo.png" alt="Pokémon Logo" class="logo" />
         <img src="~/img/unown-j-918977700.png" alt="Unown J" class="unownj" />
     </div>
-
-    <section id="cards-grid" class="image-matrix" aria-live="polite"></section>
+    <section class="image-matrix" aria-live="polite">
+        @if (Model.Deck?.Cards != null && Model.Deck.Cards.Any())
+        {
+            foreach (var card in Model.Deck.Cards)
+            {
+                <img src="@card.Image" alt="@card.Name" class="img-fluid Gallery" />
+            }
+        }
+    </section>
 
     <div class="text-center mt-4">
-        <button id="generate-strategy" class="btn btn-success btn-lg">Generate Deck Strategy</button>
+        <form id="strategy-form" method="post" asp-page-handler="GenerateStrategy">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="playStyle" value="Balanced" />
+            <button type="submit" class="btn btn-success btn-lg">Generate Deck Strategy</button>
+        </form>
     </div>
 
     <div id="strategy-box" class="jumbotron mt-3 p-4"
@@ -41,31 +49,37 @@
     </div>
 
     <div class="jumbotron py-4 search" style="background-color:#000000;">
-        <form id="add-card-form" class="container" autocomplete="off">
+        <form method="post" asp-page-handler="AddCard" class="container" autocomplete="off">
+            @Html.AntiForgeryToken()
             <div class="mb-3">
-                <label for="cardName" class="form-label">Card Name</label>
-                <input id="cardName" name="cardName" class="form-control" required />
+                <label for="cardName" class="form-label">Pokemon Name</label>
+                <input id="cardName" name="CardName" class="form-control" required />
             </div>
             <div class="mb-3">
                 <label for="setName" class="form-label">Set</label>
-                <input id="setName" name="setName" class="form-control" required />
+                <input id="setName" name="SetName" class="form-control" required />
             </div>
             <div class="mb-3">
                 <label for="cardNumber" class="form-label">Number</label>
-                <input id="cardNumber" name="cardNumber" class="form-control" required />
+                <input id="cardNumber" name="CardNumber" class="form-control"/>
             </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-primary">Add Card</button>
             </div>
         </form>
-    </div>
-
+        <form method="post" asp-page-handler="ClearDeck">
+            @Html.AntiForgeryToken()
+            <div class ="text-center mt-3">
+                <button type="submit" class="btn btn-danger postion-relative">Clear Deck</button>
+            </div>
+        </form> 
+    </div>  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
-
-    <script src="~/js/gallery.js" asp-append-version="true"></script>
+    <script src = "~/js/gallery.js" asp-append-version="true"></script>
     <script src="~/js/strategy.js" asp-append-version="true"></script>
-    <script src="~/js/deck.js" asp-append-version="true"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {gallery();});
+    </script>
 </body>
 </html>

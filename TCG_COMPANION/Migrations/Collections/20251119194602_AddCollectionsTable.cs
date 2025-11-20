@@ -2,49 +2,44 @@
 
 #nullable disable
 
-namespace TCG_COMPANION.Migrations.Deck
+namespace TCG_COMPANION.Migrations.Collections
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class AddCollectionsTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_CardData_Decks_DeckId",
+                name: "FK_CardData_Collections_CollectionsId",
                 table: "CardData");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Decks_User_UserId",
-                table: "Decks");
+                name: "FK_Collections_User_UserId",
+                table: "Collections");
+
+            migrationBuilder.DropTable(
+                name: "User");
 
             migrationBuilder.DropIndex(
-                name: "IX_Decks_UserId",
-                table: "Decks");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_User",
-                table: "User");
+                name: "IX_Collections_UserId",
+                table: "Collections");
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_CardData",
                 table: "CardData");
 
             migrationBuilder.DropIndex(
-                name: "IX_CardData_DeckId",
+                name: "IX_CardData_CollectionsId",
                 table: "CardData");
 
             migrationBuilder.DropColumn(
                 name: "UserId",
-                table: "Decks");
+                table: "Collections");
 
             migrationBuilder.DropColumn(
-                name: "DeckId",
+                name: "CollectionsId",
                 table: "CardData");
-
-            migrationBuilder.RenameTable(
-                name: "User",
-                newName: "Users");
 
             migrationBuilder.RenameTable(
                 name: "CardData",
@@ -52,15 +47,10 @@ namespace TCG_COMPANION.Migrations.Deck
 
             migrationBuilder.AddColumn<string>(
                 name: "UserName",
-                table: "Decks",
+                table: "Collections",
                 type: "TEXT",
                 nullable: false,
                 defaultValue: "");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Users",
-                table: "Users",
-                column: "Id");
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_Cards",
@@ -68,44 +58,40 @@ namespace TCG_COMPANION.Migrations.Deck
                 column: "Id");
 
             migrationBuilder.CreateTable(
-                name: "DeckCards",
+                name: "CollectionCards",
                 columns: table => new
                 {
                     CardsId = table.Column<int>(type: "INTEGER", nullable: false),
-                    DeckId = table.Column<int>(type: "INTEGER", nullable: false)
+                    CollectionsId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DeckCards", x => new { x.CardsId, x.DeckId });
+                    table.PrimaryKey("PK_CollectionCards", x => new { x.CardsId, x.CollectionsId });
                     table.ForeignKey(
-                        name: "FK_DeckCards_Cards_CardsId",
+                        name: "FK_CollectionCards_Cards_CardsId",
                         column: x => x.CardsId,
                         principalTable: "Cards",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DeckCards_Decks_DeckId",
-                        column: x => x.DeckId,
-                        principalTable: "Decks",
+                        name: "FK_CollectionCards_Collections_CollectionsId",
+                        column: x => x.CollectionsId,
+                        principalTable: "Collections",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_DeckCards_DeckId",
-                table: "DeckCards",
-                column: "DeckId");
+                name: "IX_CollectionCards_CollectionsId",
+                table: "CollectionCards",
+                column: "CollectionsId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "DeckCards");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Users",
-                table: "Users");
+                name: "CollectionCards");
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_Cards",
@@ -113,11 +99,7 @@ namespace TCG_COMPANION.Migrations.Deck
 
             migrationBuilder.DropColumn(
                 name: "UserName",
-                table: "Decks");
-
-            migrationBuilder.RenameTable(
-                name: "Users",
-                newName: "User");
+                table: "Collections");
 
             migrationBuilder.RenameTable(
                 name: "Cards",
@@ -125,47 +107,60 @@ namespace TCG_COMPANION.Migrations.Deck
 
             migrationBuilder.AddColumn<int>(
                 name: "UserId",
-                table: "Decks",
+                table: "Collections",
                 type: "INTEGER",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
-                name: "DeckId",
+                name: "CollectionsId",
                 table: "CardData",
                 type: "INTEGER",
                 nullable: true);
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_User",
-                table: "User",
-                column: "Id");
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_CardData",
                 table: "CardData",
                 column: "Id");
 
+            migrationBuilder.CreateTable(
+                name: "User",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Bio = table.Column<string>(type: "TEXT", nullable: true),
+                    DisplayName = table.Column<string>(type: "TEXT", nullable: true),
+                    Email = table.Column<string>(type: "TEXT", nullable: true),
+                    PasswordHash = table.Column<string>(type: "TEXT", nullable: false),
+                    ProfileImage = table.Column<string>(type: "TEXT", nullable: true),
+                    Username = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.Id);
+                });
+
             migrationBuilder.CreateIndex(
-                name: "IX_Decks_UserId",
-                table: "Decks",
+                name: "IX_Collections_UserId",
+                table: "Collections",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CardData_DeckId",
+                name: "IX_CardData_CollectionsId",
                 table: "CardData",
-                column: "DeckId");
+                column: "CollectionsId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_CardData_Decks_DeckId",
+                name: "FK_CardData_Collections_CollectionsId",
                 table: "CardData",
-                column: "DeckId",
-                principalTable: "Decks",
+                column: "CollectionsId",
+                principalTable: "Collections",
                 principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Decks_User_UserId",
-                table: "Decks",
+                name: "FK_Collections_User_UserId",
+                table: "Collections",
                 column: "UserId",
                 principalTable: "User",
                 principalColumn: "Id",

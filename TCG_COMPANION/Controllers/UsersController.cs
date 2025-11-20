@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +8,6 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims; 
 
-using System.Text;
 
 
 namespace TCG_COMPANION.Controllers
@@ -105,11 +99,12 @@ namespace TCG_COMPANION.Controllers
 
             await SignInUserAsync(user, isPersistent: false);
             Response.Headers.Location = "/index.html";
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return Redirect("/");
         }
 
         // POST: api/Users/login
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+         
         [HttpPost("login")]
         [AllowAnonymous]
         public async Task<ActionResult<User>> Login([FromForm] User user)
@@ -131,16 +126,17 @@ namespace TCG_COMPANION.Controllers
 
             await SignInUserAsync(existingUser, isPersistent: false);
             Response.Headers.Location = "/index.html";
-            return Ok(new { message = "Logged in successfully" });
+            return Redirect("/");
         }
-
+        [HttpGet("logout")]
         [HttpPost("logout")]
         [Authorize]
+        [IgnoreAntiforgeryToken]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return Ok(new { message = "Logged out successfully" });
-        }
+            return Redirect("/");
+        }   
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
@@ -181,6 +177,5 @@ namespace TCG_COMPANION.Controllers
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, props);
         }
-    }
-    
+    }   
 }

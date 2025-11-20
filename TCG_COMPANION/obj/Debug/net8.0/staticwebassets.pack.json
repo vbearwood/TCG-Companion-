@@ -17,10 +17,6 @@
       "PackagePath": "staticwebassets/img/unown-j-918977700.png"
     },
     {
-      "Id": "/home/vbearwood/capstone/TCG_COMPANION/wwwroot/js/deck.js",
-      "PackagePath": "staticwebassets/js/deck.js"
-    },
-    {
       "Id": "/home/vbearwood/capstone/TCG_COMPANION/wwwroot/js/gallery.js",
       "PackagePath": "staticwebassets/js/gallery.js"
     },

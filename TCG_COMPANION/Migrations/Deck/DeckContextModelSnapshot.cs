@@ -48,11 +48,18 @@ namespace TCG_COMPANION.Migrations.Deck
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Number")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Number")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Prices")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("RetreatCost")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Set")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -76,29 +83,6 @@ namespace TCG_COMPANION.Migrations.Deck
                     b.HasKey("Id");
 
                     b.ToTable("Decks");
-                });
-
-            modelBuilder.Entity("TCG_COMPANION.Models.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("CardDataDeck", b =>

@@ -9,20 +9,18 @@
             <ul class="navbar-nav me-auto">
                 <li class="nav-item"><a class="nav-link" href="/Deck">Deck</a></li>
                 <li class="nav-item"><a class="nav-link" href="/Collection">Collection</a></li>
-                <li class="nav-item"><a class="nav-link" href="/About">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="/Rules">How to Play</a></li>
-                <li class="nav-item"><a class="nav-link" href="/Login">Login</a></li>
-                <li class="nav-item"><a class="nav-link" href="/Join">Join</a></li>
                 @if (User?.Identity?.IsAuthenticated ?? false)
                 {
                     <li class="nav-item">
-                        <form method="post" class="d-inline"
-                              asp-area="Identity" asp-page="/Account/Logout"
-                              asp-route-returnUrl="@Context.Request.Path">
-                            <button type="submit" class="btn btn-outline-danger btn-sm nav-link border-0">
-                                Logout (@User.Identity!.Name)
-                            </button>
-                        </form>
+                        <a class="btn btn-outline-danger btn-sm nav-link" href="/api/users/logout">Logout</a>
+                    </li>
+                }
+                else {
+                    <li class="nav-item">
+                        <a class="btn btn-outline-success btn-sm nav-link" href="/Login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-warning btn-sm nav-link" href="/Join">Join</a>
                     </li>
                 }
                 <li class="nav-item">

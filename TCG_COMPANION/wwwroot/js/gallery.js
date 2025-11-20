@@ -1,4 +1,4 @@
-function gallery () {
+function gallery() {
     let idx = 0;
     const cardsPerPage = 6;
     const gallery = document.getElementsByClassName("Gallery");
