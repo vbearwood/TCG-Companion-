@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TCG_COMPANION")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fde204fb9853b7a497f3836a783222c151580ce3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dac638d5898ebaac20255d769050b3b3fc93ed8d")]
 [assembly: System.Reflection.AssemblyProductAttribute("TCG_COMPANION")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TCG_COMPANION")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
