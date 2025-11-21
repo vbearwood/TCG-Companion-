@@ -7,21 +7,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item"><a class="nav-link" href="/Deck">Deck</a></li>
-                <li class="nav-item"><a class="nav-link" href="/Collection">Collection</a></li>
                 @if (User?.Identity?.IsAuthenticated ?? false)
                 {
-                    <li class="nav-item">
-                        <a class="btn btn-outline-danger btn-sm nav-link" href="/api/users/logout">Logout</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/Deck">Deck</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Collection">Collection</a></li>
+                    <form method="post" action="/api/users/logout">
+                        <button type="submit" class="nav-link">Logout</button>
+                    </form>
                 }
                 else {
-                    <li class="nav-item">
-                        <a class="btn btn-outline-success btn-sm nav-link" href="/Login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-warning btn-sm nav-link" href="/Join">Join</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/Login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Join">Join</a></li>
                 }
                 <li class="nav-item">
                     <a class="nav-link" href="/admin" target="_blank">Admin</a>

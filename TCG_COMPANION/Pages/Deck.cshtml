@@ -7,13 +7,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title>@ViewData["Title"]</title>
-    
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="~/css/pokemon.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/pokemon.css" />
 </head>
 
 <body class="text-center" style="background-color:#2c2c2c; color:#f5f5f5;">
@@ -25,7 +20,7 @@
         <img src="~/img/unown-j-918977700.png" alt="Unown J" class="unownj" />
     </div>
     <section class="image-matrix" aria-live="polite">
-        @if (Model.Deck?.Cards != null && Model.Deck.Cards.Any())
+        @if (Model.Deck?.Cards != null)
         {
             foreach (var card in Model.Deck.Cards)
             {
@@ -47,39 +42,52 @@
         <h3>Deck Strategy</h3>
         <div id="strategy-text"></div>
     </div>
-
-    <div class="jumbotron py-4 search" style="background-color:#000000;">
-        <form method="post" asp-page-handler="AddCard" class="container" autocomplete="off">
-            @Html.AntiForgeryToken()
-            <div class="mb-3">
-                <label for="cardName" class="form-label">Pokemon Name</label>
-                <input id="cardName" name="CardName" class="form-control" required />
-            </div>
-            <div class="mb-3">
-                <label for="setName" class="form-label">Set</label>
-                <input id="setName" name="SetName" class="form-control" required />
-            </div>
-            <div class="mb-3">
-                <label for="cardNumber" class="form-label">Number</label>
-                <input id="cardNumber" name="CardNumber" class="form-control"/>
-            </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary">Add Card</button>
-            </div>
-        </form>
-        <form method="post" asp-page-handler="ClearDeck">
-            @Html.AntiForgeryToken()
-            <div class ="text-center mt-3">
-                <button type="submit" class="btn btn-danger postion-relative">Clear Deck</button>
-            </div>
-        </form> 
+    <div> 
+    <form method="post" asp-page-handler="AddCard" class="table-responsive" autocomplete="off">
+        <table class ="table table-dark table-striped alighn-middle">
+            <thead>
+                <tr>
+                    <th scope="col">Pokemon Name</th>
+                    <th scope="col">Card Set</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @Html.AntiForgeryToken()
+                    <td><input id="cardName" name="CardName" class="form-control" required /></td>
+                    <td><input id="setName" name="SetName" class="form-control" required /></td>
+                    <td><button type="submit" class="btn btn-primary">Add Card</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <form method = "post" asp-page-handler="DeleteCard" class="table-responsive" autocomplete="off">
+        <table class ="table table-dark table-striped alighn-middle">
+            <thead>
+                <tr>
+                    <th scope="col">Pokemon Name</th>
+                    <th scope="col">Card Set</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @Html.AntiForgeryToken()
+                    <td><input id="cardName" name="CardName" class="form-control" required /></td>
+                    <td><input id="setName" name="SetName" class="form-control" required /></td>
+                    <td><button type="submit" class="btn btn-warning">Delete Card</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <form method="post" asp-page-handler="ClearDeck">
+        @Html.AntiForgeryToken()
+        <div class ="text-center mt-3">
+            <button type="submit" class="btn btn-danger postion-relative">Clear Deck</button>
+        </div>
+    </form> 
     </div>  
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src = "~/js/gallery.js" asp-append-version="true"></script>
     <script src="~/js/strategy.js" asp-append-version="true"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {gallery();});
-    </script>
 </body>
 </html>

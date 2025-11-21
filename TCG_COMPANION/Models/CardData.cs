@@ -10,13 +10,7 @@ namespace TCG_COMPANION.Models
         public string Image { get; set; } = null!;
         public string? Prices { get; set; } = null!;
         public int Hp { get; set; }
-        [NotMapped]public List<string> Types { get; set; } = null!;
-        [NotMapped]public Dictionary<string, string> Abilities { get; set; } = null!;
-        [NotMapped]public Dictionary<string, string> Attacks { get; set; } = null!;
-        [NotMapped]public Dictionary<string, string> Weaknesses { get; set; } = null!;
-        [NotMapped]public List<string> Resistances { get; set; } = null!;
         public int RetreatCost { get; set; }
-        [NotMapped]public List<string> Rules { get; set; } = null!;
         public string Set { get; set; } = null!;
     }
 }

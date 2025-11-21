@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TCG_COMPANION.Models;
 
 namespace TCG_COMPANION.Data
@@ -12,10 +12,7 @@ namespace TCG_COMPANION.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Deck>()
-                .HasMany(d => d.Cards)
-                .WithMany()
-                .UsingEntity(j => j.ToTable("DeckCards"));
+            modelBuilder.Entity<Deck>().HasMany(d => d.Cards).WithMany().UsingEntity(j => j.ToTable("DeckCards"));
 
             base.OnModelCreating(modelBuilder);
         }

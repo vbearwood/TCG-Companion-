@@ -1,5 +1,4 @@
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/appsettings.json
-/home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/keys/gen-lang-client-0278751790-61c9be4166d5.json
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/sets.json
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/settings.json
 /home/vbearwood/capstone/TCG_COMPANION/bin/Debug/net8.0/TCG_COMPANION.staticwebassets.runtime.json

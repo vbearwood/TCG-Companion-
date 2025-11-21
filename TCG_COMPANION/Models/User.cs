@@ -7,8 +7,8 @@ namespace TCG_COMPANION.Models
         public string? Email { get; set; } = null!;
         public string PasswordHash { get; set; } = null!;
 
-        public string? DisplayName { get; set; } = null!;
-        public string? Bio { get; set; } = null!;
-        public string? ProfileImage { get; set; } = null!;
+        public string? DisplayName { get; set; }
+        public string? Bio { get; set; }
+        public string? ProfileImage { get; set; }
     }
 }

@@ -21,10 +21,10 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddAuthorization();
 builder.Services.AddHttpClient();
 
-builder.Services.AddHttpClient("PokemonTCG", c =>
+builder.Services.AddHttpClient("PokemonTCG", client =>
 {
-    c.BaseAddress = new Uri("https://api.pokemontcg.io/v2/");
-    c.DefaultRequestHeaders.Add("X-Api-key", builder.Configuration["PokemonTCGApiKey"]);
+    client.BaseAddress = new Uri("https://api.pokemontcg.io/v2/");
+    client.DefaultRequestHeaders.Add("X-Api-key", builder.Configuration["PokemonTCGApiKey"]);
 
 });
 

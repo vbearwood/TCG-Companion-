@@ -46,10 +46,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/vbearwood/capstone/TCG_COMPANION/Pages/Navigation.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTmF2aWdhdGlvbi5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [/home/vbearwood/capstone/TCG_COMPANION/Pages/Shared/_Bootstrap.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19Cb290c3RyYXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

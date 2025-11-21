@@ -47,30 +47,25 @@ namespace TCG_COMPANION.Utils
             _http = http;
         }
        
-    public async Task<CardData?> FindCardAsync(string cardName, string setId, string? cardNumber = null)
-{
+    public async Task<CardData?> FindCardAsync(string cardName, string setId)
+    {
         var q = $"name:{cardName} set.id:{setId}";
     
-        if (!string.IsNullOrWhiteSpace(cardNumber))
-        {
-            q += $" number:{cardNumber}";
-        } 
+        var response = await _http.GetAsync($"https://api.pokemontcg.io/v2/cards?q={System.Net.WebUtility.UrlEncode(q)}");
 
-        var url = $"https://api.pokemontcg.io/v2/cards?q={System.Net.WebUtility.UrlEncode(q)}";
-    
-        var resp = await _http.GetAsync(url);
-
-        if (!resp.IsSuccessStatusCode)
+        if (!response.IsSuccessStatusCode)
         {
             return null;
         }
-        var raw = await resp.Content.ReadAsStringAsync();
+
+        var raw = await response.Content.ReadAsStringAsync();
         var parsed = JsonConvert.DeserializeObject<CardApiResponse>(raw);
     
         if (parsed?.data == null || parsed.data.Count == 0)
         {
             return null;
         }
+        
         int? num = null;
         var c = parsed.data[0];
         

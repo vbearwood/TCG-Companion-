@@ -28,7 +28,7 @@ namespace TCG_COMPANION.Utils
 
 								{deck}
 
-Consider:
+								Consider:
 								- Type balance and synergy
 									- Potential combos
 									- Weaknesses to watch for

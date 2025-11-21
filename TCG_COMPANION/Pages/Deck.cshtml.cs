@@ -27,12 +27,7 @@ namespace TCG_COMPANION.Pages
 
 		public async Task OnGetAsync()
 		{
-			var username = User.Identity?.Name;
-			if (string.IsNullOrEmpty(username))
-			{
-				Message = "User not logged in.";
-				return;
-			}
+			var username = User.Identity!.Name;
 
 			Deck = await _context.Decks.Include(d => d.Cards).FirstOrDefaultAsync(d => d.UserName == username);
 			if (Deck == null)
@@ -41,26 +36,31 @@ namespace TCG_COMPANION.Pages
 			}
 		}
 
-		public async Task<IActionResult> OnPostAddCardAsync(string CardName, string SetName, string CardNumber)
+		public async Task<IActionResult> OnPostAddCardAsync(string CardName, string SetName)
 		{
-			var username = User.Identity?.Name;
-			if (string.IsNullOrEmpty(username))
-			{
-				Message = "User not logged in.";
-				return Page();
-			}
+			var username = User.Identity!.Name;
+			if(username == null)
+            {
+                Message = "Must be logged on";
+                return Page();
+            }
 
 			Deck = await _context.Decks.Include(d => d.Cards).FirstOrDefaultAsync(d => d.UserName == username);
 
 			if (Deck == null)
 			{
-				Deck = new Deck
+                Deck = new Deck
 				{
 					UserName = username,
-						 Cards = new List<CardData>()
+					Cards = new List<CardData>()
 				};
-				_context.Decks.Add(Deck);
+                _context.Decks.Add(Deck);
 			}
+			else if(Deck.Cards.Count() >= 60)
+            {
+                Message = "To many cards in deck. Only need 60.";
+				return Page();
+            }
 
 			if(!_setHolder.SetNameToId.TryGetValue(SetName, out var setId))
 			{
@@ -70,7 +70,7 @@ namespace TCG_COMPANION.Pages
 			
 			var httpClient = _httpClientFactory.CreateClient("PokemonTCG");
 			var cardLookup = new PokemonTcgCardLookup(httpClient);
-			var cardData = await cardLookup.FindCardAsync(CardName, setId, string.IsNullOrWhiteSpace(CardNumber) ? null : CardNumber);
+			var cardData = await cardLookup.FindCardAsync(CardName, setId);
 
 			if (cardData == null)
 			{
@@ -86,19 +86,41 @@ namespace TCG_COMPANION.Pages
 
 			return RedirectToPage();
 		}
+		public async Task<IActionResult> OnPostDeleteCardAsync(string CardName, string SetName)
+        {
+			var username = User.Identity!.Name;
+			Deck = await _context.Decks.Include(d => d.Cards).FirstOrDefaultAsync(d => d.UserName == username);
 
+			if(Deck == null)
+            {
+                Message = "No Deck on your account.";
+				return Page();
+            }
+
+			if(!_setHolder.SetNameToId.TryGetValue(SetName, out var setId))
+    		{
+        		Message = "Invalid set name.";
+        		return Page();
+    		}
+			var cardName = CardName; 
+			var setName = SetName;
+			var card = Deck.Cards.FirstOrDefault(d => d.Name == cardName && d.Set == setId);
+
+			if(card == null)
+            {
+                Message = "Card not found in deck.";
+				return Page();
+            }
+
+			Deck.Cards.Remove(card);
+			await _context.SaveChangesAsync();
+			Message = "Card removed successfully";
+            return RedirectToPage();
+        }
 		public async Task<IActionResult> OnPostClearDeckAsync()
 		{
-			var username = User.Identity?.Name;
-			if (string.IsNullOrEmpty(username))
-			{
-				Message = "User not logged in.";
-				return Page();
-			}
-
-			Deck = await _context.Decks
-				.Include(d => d.Cards)
-				.FirstOrDefaultAsync(d => d.UserName == username);
+			var username = User.Identity!.Name;
+			Deck = await _context.Decks.Include(d => d.Cards).FirstOrDefaultAsync(d => d.UserName == username);
 
 			if (Deck == null)
 			{
@@ -114,13 +136,7 @@ namespace TCG_COMPANION.Pages
 		}
 		public async Task<IActionResult> OnPostGenerateStrategyAsync([FromForm] string playStyle)
         {
-            var username = User.Identity?.Name;
-            if (string.IsNullOrEmpty(username))
-            {
-                Message = "User not logged in.";
-                return Page();
-            }
-
+            var username = User.Identity!.Name;
             Deck = await _context.Decks.Include(d => d.Cards).FirstOrDefaultAsync(d => d.UserName == username);
 
             if (Deck == null || Deck.Cards.Count == 0)
@@ -129,7 +145,7 @@ namespace TCG_COMPANION.Pages
                 return Page();
             }
 
-            var prompt =$"Playstyle: {playStyle}\n\nDeck contains:\n" +string.Join("\n", Deck.Cards.Select(c => $"- {c.Name} ({c.Set} {c.Number})"));
+            var prompt =string.Join("\n", Deck.Cards.Select(c => $"{c.Name} ({c.Set} {c.Number})"));
 
             Message = await _geminiService.GetChatResponseAsync(prompt);
 
