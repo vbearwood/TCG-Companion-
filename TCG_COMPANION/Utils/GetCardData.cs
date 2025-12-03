@@ -1,14 +1,11 @@
-using System.Net.Http;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
-using SQLitePCL;
 using TCG_COMPANION.Models;
 
 namespace TCG_COMPANION.Utils
 {
     class CardApiResponse
     {
-        public System.Collections.Generic.List<ApiCard>? data { get; set; }
+        public List<ApiCard>? data { get; set; }
     }
    
     class ApiCard
@@ -16,7 +13,7 @@ namespace TCG_COMPANION.Utils
         public string? name { get; set; }
         public string? number { get; set; }
         public string? hp { get; set; }
-        public System.Collections.Generic.List<string>? types { get; set; }
+        public List<string>? types { get; set; }
         public ApiImages? images { get; set; }
         public ApiTcgPlayer? tcgplayer { get; set; }
     }
@@ -47,9 +44,9 @@ namespace TCG_COMPANION.Utils
             _http = http;
         }
        
-    public async Task<CardData?> FindCardAsync(string cardName, string setId)
+    public async Task<CardData?> FindCardAsync(string cardName, string setId, int cardNum)
     {
-        var q = $"name:{cardName} set.id:{setId}";
+        var q = $"name:{cardName} set.id:{setId} number:{cardNum}";
     
         var response = await _http.GetAsync($"https://api.pokemontcg.io/v2/cards?q={System.Net.WebUtility.UrlEncode(q)}");
 

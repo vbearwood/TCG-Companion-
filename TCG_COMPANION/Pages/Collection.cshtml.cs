@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using TCG_COMPANION.Data;
 using TCG_COMPANION.Models;
 using TCG_COMPANION.Utils;
@@ -12,10 +11,10 @@ namespace TCG_COMPANION.Pages
     public class CollectionModel : PageModel
     {
         private readonly PokemonSetHolder _setHolder;
-        private readonly ILogger<Collections> _logger;
+        private readonly ILogger<CollectionModel> _logger;
         private readonly CollectionsContext _context;
         private readonly IHttpClientFactory _httpClientFactory = null!;
-        public CollectionModel(CollectionsContext context, PokemonSetHolder setHolder, IHttpClientFactory httpClientFactory, ILogger<Collections> logger )
+        public CollectionModel(CollectionsContext context, PokemonSetHolder setHolder, IHttpClientFactory httpClientFactory, ILogger<CollectionModel> logger )
         {
             _logger = logger;
             _context = context;
@@ -25,18 +24,31 @@ namespace TCG_COMPANION.Pages
 
         public Collections? Collection { get; set; }
         public string? Message { get; set; }
+        [BindProperty(SupportsGet = true)]
+		public string? Search { get; set; }
+		public ICollection<CardData> SearchCollection { get; set; } = default!;
         public async Task OnGetAsync()
         {
             var username = User.Identity!.Name;
 
             Collection = await _context.Collections.Include(c => c.Cards).FirstOrDefaultAsync(c => c.UserName == username);
-
             if (Collection == null)
             {
                 _logger.LogWarning("No collection found for your account {username}.", username);
+                SearchCollection = new List<CardData>();
             }
+            else
+            {
+                var card = from i in Collection.Cards select i;
+                if(!string.IsNullOrEmpty(Search))
+                {
+                   card = card.Where(d => d.Name.Contains(Search));
+                }
+                SearchCollection = card.ToList();
+            }
+		
         }
-        public async Task<IActionResult> OnPostAddCardAsync(string CardName, string SetName)
+        public async Task<IActionResult> OnPostAddCardAsync(string CardName, string SetName, int CardNum)
         {
             var username = User.Identity!.Name;
 
@@ -59,7 +71,7 @@ namespace TCG_COMPANION.Pages
                 _context.Collections.Add(Collection);
             }
 
-			if(!_setHolder.SetNameToId.TryGetValue(SetName, out var setId))
+			if(!_setHolder.SetNameToId.TryGetValue(SetName, out var SetId))
 			{
                 _logger.LogWarning("Invalid set name {SetName}.", SetName);
 				return Page();
@@ -67,7 +79,7 @@ namespace TCG_COMPANION.Pages
 
             var httpClient = _httpClientFactory.CreateClient("PokemonTCG");
             var cardLookup = new PokemonTcgCardLookup(httpClient);
-            var cardData = await cardLookup.FindCardAsync(CardName, setId);
+            var cardData = await cardLookup.FindCardAsync(CardName, SetId, CardNum);
 
             if (cardData == null)
             {
@@ -79,11 +91,11 @@ namespace TCG_COMPANION.Pages
             Collection.Cards.Add(cardData);
             await _context.SaveChangesAsync();
 
-            _logger.LogWarning("Card '{CardName}' added to your collection.", CardName);
+            _logger.LogInformation("Card '{CardName}' added to your collection.", CardName);
 
             return RedirectToPage();
         }
-		public async Task<IActionResult> OnPostDeleteCardAsync(string CardName, string SetName)
+		public async Task<IActionResult> OnPostDeleteCardAsync(string CardName, string SetName, int CardNum)
         {
 			var username = User.Identity!.Name;
 			Collection = await _context.Collections.Include(d => d.Cards).FirstOrDefaultAsync(d => d.UserName == username);
@@ -99,10 +111,8 @@ namespace TCG_COMPANION.Pages
                 _logger.LogWarning("Invalid set name {SetName}", SetName);
         		return Page();
     		}
-
-			var cardName = CardName; 
-			var setName = SetName;
-			var card = Collection.Cards.FirstOrDefault(c => c.Name == cardName && c.Set == setId);
+            var cardNum = CardNum.ToString();
+			var card = Collection.Cards.FirstOrDefault(c => c.Name == CardName && c.Set == setId && c.Number == cardNum);
 
 			if(card == null)
             {

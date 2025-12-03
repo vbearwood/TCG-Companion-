@@ -14,8 +14,11 @@ namespace TCG_COMPANION.Pages
 		private readonly DeckContext _context;
 		private readonly GeminiService  _geminiService;
         private readonly IHttpClientFactory _httpClientFactory = null!;
-		public DeckModel(DeckContext context, GeminiService geminiService, PokemonSetHolder setHolder, IHttpClientFactory httpClientFactory)
+		private readonly ILogger<DeckModel> _logger;
+
+		public DeckModel(DeckContext context, GeminiService geminiService, PokemonSetHolder setHolder, IHttpClientFactory httpClientFactory, ILogger<DeckModel> logger)
 		{
+			_logger = logger;
 			_context = context;
 			_geminiService = geminiService;
             _httpClientFactory = httpClientFactory;
@@ -24,7 +27,9 @@ namespace TCG_COMPANION.Pages
 
 		public Deck? Deck { get; set; }
 		public string? Message { get; set; }
-
+		[BindProperty(SupportsGet = true)]
+		public string? Search { get; set; }
+		public ICollection<CardData> SearchDeck { get; set; } = default!;
 		public async Task OnGetAsync()
 		{
 			var username = User.Identity!.Name;
@@ -32,16 +37,26 @@ namespace TCG_COMPANION.Pages
 			Deck = await _context.Decks.Include(d => d.Cards).FirstOrDefaultAsync(d => d.UserName == username);
 			if (Deck == null)
 			{
-				Message = "No deck found for your account.";
+				_logger.LogWarning("No deck found for your account {username}.", username);
+				SearchDeck = new List<CardData>();
 			}
+            else
+            {
+                var card = from i in Deck.Cards select i;
+				if(!string.IsNullOrEmpty(Search))
+            	{
+               		card = card.Where(d => d.Name.Contains(Search)); 
+            	}
+				SearchDeck = card.ToList();
+            }
 		}
 
-		public async Task<IActionResult> OnPostAddCardAsync(string CardName, string SetName)
+		public async Task<IActionResult> OnPostAddCardAsync(string CardName, string SetName, int CardNum, int Number)
 		{
 			var username = User.Identity!.Name;
 			if(username == null)
             {
-                Message = "Must be logged on";
+				_logger.LogWarning("Must be logged on {username}.", username);
                 return Page();
             }
 
@@ -58,23 +73,23 @@ namespace TCG_COMPANION.Pages
 			}
 			else if(Deck.Cards.Count() >= 60)
             {
-                Message = "To many cards in deck. Only need 60.";
+				_logger.LogWarning("To many cards in deck. Only need 60 {username}.", username); 
 				return Page();
             }
 
 			if(!_setHolder.SetNameToId.TryGetValue(SetName, out var setId))
 			{
-				Message = "Invalid set name.";
+				_logger.LogWarning("Invalid set name {SetName}", SetName);
 				return Page();
 			}
 			
 			var httpClient = _httpClientFactory.CreateClient("PokemonTCG");
 			var cardLookup = new PokemonTcgCardLookup(httpClient);
-			var cardData = await cardLookup.FindCardAsync(CardName, setId);
+			var cardData = await cardLookup.FindCardAsync(CardName, setId, CardNum);
 
 			if (cardData == null)
 			{
-				Message = "Card not found in the Pokemon TCG database."; 
+				_logger.LogWarning("Card {CardName} not found in set {SetName}.", CardName, SetName);
 				return Page();
 			}
 
@@ -82,39 +97,39 @@ namespace TCG_COMPANION.Pages
 			Deck.Cards.Add(cardData);
 
 			await _context.SaveChangesAsync();
-			Message = "Card added successfully!";
+			_logger.LogInformation("Card {CardName} added successfully.", CardName);
 
 			return RedirectToPage();
 		}
-		public async Task<IActionResult> OnPostDeleteCardAsync(string CardName, string SetName)
+		public async Task<IActionResult> OnPostDeleteCardAsync(string CardName, string SetName, int CardNum)
         {
 			var username = User.Identity!.Name;
 			Deck = await _context.Decks.Include(d => d.Cards).FirstOrDefaultAsync(d => d.UserName == username);
 
 			if(Deck == null)
             {
-                Message = "No Deck on your account.";
+				_logger.LogWarning("No Deck on your account {username}", username);
 				return Page();
             }
 
 			if(!_setHolder.SetNameToId.TryGetValue(SetName, out var setId))
     		{
-        		Message = "Invalid set name.";
+				_logger.LogWarning("Invalid set name {SetName}", SetName);
         		return Page();
     		}
-			var cardName = CardName; 
-			var setName = SetName;
-			var card = Deck.Cards.FirstOrDefault(d => d.Name == cardName && d.Set == setId);
+			
+            var cardNum = CardNum.ToString();
+			var card = Deck.Cards.FirstOrDefault(c => c.Name == CardName && c.Set == setId && c.Number == cardNum);
 
 			if(card == null)
             {
-                Message = "Card not found in deck.";
+				_logger.LogWarning("Card {CardName} not found in deck", CardName);
 				return Page();
             }
 
 			Deck.Cards.Remove(card);
 			await _context.SaveChangesAsync();
-			Message = "Card removed successfully";
+			_logger.LogInformation("Card {CardName} removed successfully.", CardName);
             return RedirectToPage();
         }
 		public async Task<IActionResult> OnPostClearDeckAsync()
@@ -124,13 +139,13 @@ namespace TCG_COMPANION.Pages
 
 			if (Deck == null)
 			{
-				Message = "No deck found for your account.";
+				_logger.LogWarning("No deck found on your account {username}.", username);
 				return Page();
 			}
 
 			Deck.Cards.Clear();
 			await _context.SaveChangesAsync();
-			Message = "Deck cleared successfully!";
+			_logger.LogInformation("Deck cleared successfully {username}", username);
 
 			return RedirectToPage();
 		}
@@ -141,7 +156,7 @@ namespace TCG_COMPANION.Pages
 
             if (Deck == null || Deck.Cards.Count == 0)
             {
-                Message = "No deck found for your account or deck is empty.";
+				_logger.LogWarning("No deck found on your account {username}", username);
                 return Page();
             }
 

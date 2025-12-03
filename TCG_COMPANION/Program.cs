@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TCG_COMPANION.Data;
 using TCG_COMPANION.Utils;
+using TCG_COMPANION.Hubs;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 
@@ -20,6 +21,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddAuthorization();
 builder.Services.AddHttpClient();
+builder.Services.AddSignalR();
 
 builder.Services.AddHttpClient("PokemonTCG", client =>
 {
@@ -37,6 +39,7 @@ builder.Services.AddSingleton<PokemonSetHolder>();
 
 var app = builder.Build();
 
+
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
@@ -44,5 +47,5 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 app.MapControllers();
-
+app.MapHub<ChatHub>("chatHub");
 app.Run();
