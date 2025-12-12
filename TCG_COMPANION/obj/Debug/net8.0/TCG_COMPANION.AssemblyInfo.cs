@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("d02308e4-dcd6-4496-bb3a-9d3879f6baf2")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("TCG_COMPANION")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c254746d91667b8993e018e63288009c1c2d1637")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5554b0b455468b36a647f3cdb6ab65e870f31331")]
 [assembly: System.Reflection.AssemblyProductAttribute("TCG_COMPANION")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TCG_COMPANION")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
