@@ -13235,11 +13235,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/vbearwood/capstone/TCG_COMPANION/TCG_COMPANION.csproj",
+      "projectUniqueName": "/home/vbearwood/capstonefinal/TCG-Companion-/TCG_COMPANION/TCG_COMPANION.csproj",
       "projectName": "TCG_COMPANION",
-      "projectPath": "/home/vbearwood/capstone/TCG_COMPANION/TCG_COMPANION.csproj",
+      "projectPath": "/home/vbearwood/capstonefinal/TCG-Companion-/TCG_COMPANION/TCG_COMPANION.csproj",
       "packagesPath": "/home/vbearwood/.nuget/packages/",
-      "outputPath": "/home/vbearwood/capstone/TCG_COMPANION/obj/",
+      "outputPath": "/home/vbearwood/capstonefinal/TCG-Companion-/TCG_COMPANION/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/vbearwood/.nuget/NuGet/NuGet.Config"
@@ -13260,6 +13260,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -13338,6 +13343,20 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.20, 8.0.20]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.linux-x64",
+            "version": "[8.0.20, 8.0.20]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.20, 8.0.20]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -13346,7 +13365,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.121/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.414/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "S1yMkAWMRtEXVq/PN77wnATs2q0ETLAvvdlL/38DLz1fkAplSbn/M7Dev9lDBTbUKRuftIGz/umvSbjE4E+nGA==",
+  "dgSpecHash": "TmDT/BIwNu0=",
   "success": true,
-  "projectFilePath": "/home/vbearwood/capstone/TCG_COMPANION/TCG_COMPANION.csproj",
+  "projectFilePath": "/home/vbearwood/capstonefinal/TCG-Companion-/TCG_COMPANION/TCG_COMPANION.csproj",
   "expectedPackageFiles": [
     "/home/vbearwood/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",
     "/home/vbearwood/.nuget/packages/azure.identity/1.11.4/azure.identity.1.11.4.nupkg.sha512",
@@ -270,7 +270,10 @@
     "/home/vbearwood/.nuget/packages/system.threading.tasks.dataflow/8.0.0/system.threading.tasks.dataflow.8.0.0.nupkg.sha512",
     "/home/vbearwood/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "/home/vbearwood/.nuget/packages/system.threading.threadpool/4.3.0/system.threading.threadpool.4.3.0.nupkg.sha512",
-    "/home/vbearwood/.nuget/packages/system.threading.timer/4.3.0/system.threading.timer.4.3.0.nupkg.sha512"
+    "/home/vbearwood/.nuget/packages/system.threading.timer/4.3.0/system.threading.timer.4.3.0.nupkg.sha512",
+    "/home/vbearwood/.nuget/packages/microsoft.netcore.app.ref/8.0.20/microsoft.netcore.app.ref.8.0.20.nupkg.sha512",
+    "/home/vbearwood/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.20/microsoft.aspnetcore.app.ref.8.0.20.nupkg.sha512",
+    "/home/vbearwood/.nuget/packages/microsoft.netcore.app.host.linux-x64/8.0.20/microsoft.netcore.app.host.linux-x64.8.0.20.nupkg.sha512"
   ],
   "logs": []
 }

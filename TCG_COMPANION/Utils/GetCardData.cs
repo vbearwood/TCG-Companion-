@@ -46,7 +46,7 @@ namespace TCG_COMPANION.Utils
        
     public async Task<CardData?> FindCardAsync(string cardName, string setId, int cardNum)
     {
-        var q = $"name:{cardName} set.id:{setId} number:{cardNum}";
+        var q = $"name:\"{cardName}\" set.id:{setId} number:{cardNum}";
     
         var response = await _http.GetAsync($"https://api.pokemontcg.io/v2/cards?q={System.Net.WebUtility.UrlEncode(q)}");
 
