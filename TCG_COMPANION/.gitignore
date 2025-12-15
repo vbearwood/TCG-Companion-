@@ -1,2 +1,5 @@
 keys/
 *.json
+appsettings.json
+appsettings.*.json
+secrets.json
