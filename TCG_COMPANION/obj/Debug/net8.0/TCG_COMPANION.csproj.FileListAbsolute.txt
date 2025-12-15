@@ -10,7 +10,6 @@
 /home/vbearwood/capstone/TCG-Companion-/TCG_COMPANION/obj/Debug/net8.0/TCG_COMPANION.dll
 /home/vbearwood/capstone/TCG-Companion-/TCG_COMPANION/obj/Debug/net8.0/refint/TCG_COMPANION.dll
 /home/vbearwood/capstone/TCG-Companion-/TCG_COMPANION/obj/Debug/net8.0/TCG_COMPANION.pdb
-/home/vbearwood/capstone/TCG-Companion-/TCG_COMPANION/bin/Debug/net8.0/appsettings.json
 /home/vbearwood/capstone/TCG-Companion-/TCG_COMPANION/bin/Debug/net8.0/sets.json
 /home/vbearwood/capstone/TCG-Companion-/TCG_COMPANION/bin/Debug/net8.0/settings.json
 /home/vbearwood/capstone/TCG-Companion-/TCG_COMPANION/bin/Debug/net8.0/TCG_COMPANION.staticwebassets.runtime.json
@@ -954,3 +953,8 @@
 /home/vbearwood/capstonefinal/TCG-Companion-/TCG_COMPANION/obj/Debug/net8.0/TCG_COMPANION.pdb
 /home/vbearwood/capstonefinal/TCG-Companion-/TCG_COMPANION/obj/Debug/net8.0/TCG_COMPANION.genruntimeconfig.cache
 /home/vbearwood/capstonefinal/TCG-Companion-/TCG_COMPANION/obj/Debug/net8.0/ref/TCG_COMPANION.dll
+/home/vbearwood/capstone/TCG-Companion-/TCG_COMPANION/bin/Debug/net8.0/Microsoft.Extensions.Diagnostics.Abstractions.dll
+/home/vbearwood/capstone/TCG-Companion-/TCG_COMPANION/bin/Debug/net8.0/Microsoft.Extensions.Hosting.Abstractions.dll
+/home/vbearwood/capstone/TCG-Companion-/TCG_COMPANION/bin/Debug/net8.0/Microsoft.Extensions.ObjectPool.dll
+/home/vbearwood/capstone/TCG-Companion-/TCG_COMPANION/bin/Debug/net8.0/System.Net.WebSockets.WebSocketProtocol.dll
+/home/vbearwood/capstone/TCG-Companion-/TCG_COMPANION/bin/Debug/net8.0/appsettings.json

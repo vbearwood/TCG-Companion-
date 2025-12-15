@@ -1,27 +1,27 @@
 {
   "Files": [
     {
-      "Id": "/home/vbearwood/capstonefinal/TCG-Companion-/TCG_COMPANION/wwwroot/css/pokemon.css",
+      "Id": "/home/vbearwood/capstone/TCG-Companion-/TCG_COMPANION/wwwroot/css/pokemon.css",
       "PackagePath": "staticwebassets/css/pokemon.css"
     },
     {
-      "Id": "/home/vbearwood/capstonefinal/TCG-Companion-/TCG_COMPANION/wwwroot/img/201-v-2534047325.png",
+      "Id": "/home/vbearwood/capstone/TCG-Companion-/TCG_COMPANION/wwwroot/img/201-v-2534047325.png",
       "PackagePath": "staticwebassets/img/201-v-2534047325.png"
     },
     {
-      "Id": "/home/vbearwood/capstonefinal/TCG-Companion-/TCG_COMPANION/wwwroot/img/pokemon-logo.png",
+      "Id": "/home/vbearwood/capstone/TCG-Companion-/TCG_COMPANION/wwwroot/img/pokemon-logo.png",
       "PackagePath": "staticwebassets/img/pokemon-logo.png"
     },
     {
-      "Id": "/home/vbearwood/capstonefinal/TCG-Companion-/TCG_COMPANION/wwwroot/img/unown-j-918977700.png",
+      "Id": "/home/vbearwood/capstone/TCG-Companion-/TCG_COMPANION/wwwroot/img/unown-j-918977700.png",
       "PackagePath": "staticwebassets/img/unown-j-918977700.png"
     },
     {
-      "Id": "/home/vbearwood/capstonefinal/TCG-Companion-/TCG_COMPANION/wwwroot/js/gallery.js",
+      "Id": "/home/vbearwood/capstone/TCG-Companion-/TCG_COMPANION/wwwroot/js/gallery.js",
       "PackagePath": "staticwebassets/js/gallery.js"
     },
     {
-      "Id": "/home/vbearwood/capstonefinal/TCG-Companion-/TCG_COMPANION/wwwroot/js/strategy.js",
+      "Id": "/home/vbearwood/capstone/TCG-Companion-/TCG_COMPANION/wwwroot/js/strategy.js",
       "PackagePath": "staticwebassets/js/strategy.js"
     },
     {
