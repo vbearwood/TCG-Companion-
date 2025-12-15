@@ -1,6 +1,6 @@
 ## TCG Companion
 * How to build and run the website
-  - First, change the api key in appsettings.json to the api key I sent you, where it says Gemini ApiKey: "YOUR KEY HERE".
+  - First, change the api key in appsettings.json to the api key I sent you, where it says Gemini ApiKey: **"YOUR KEY HERE"**.
   - Second, when pulling the website, do **dotnet clean**
   - Third, build the website, with **dotnet build**
   - Last run the app with **dotnet run**
